@@ -254,14 +254,16 @@
             this.colFolioFactura,
             this.colImporte});
             this.gvReporte.GridControl = this.gridReporte;
-            this.gvReporte.GroupCount = 2;
+            this.gvReporte.GroupCount = 3;
             this.gvReporte.Name = "gvReporte";
             this.gvReporte.OptionsBehavior.Editable = false;
+            this.gvReporte.OptionsPrint.UsePrintStyles = true;
             this.gvReporte.OptionsView.EnableAppearanceEvenRow = true;
             this.gvReporte.OptionsView.EnableAppearanceOddRow = true;
             this.gvReporte.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colFolioControl, DevExpress.Data.ColumnSortOrder.Ascending),
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colCP, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colCP, DevExpress.Data.ColumnSortOrder.Ascending),
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colNombreCliente, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gvReporte.EndGrouping += new System.EventHandler(this.gvReporte_EndGrouping);
             // 
             // colFolioControl
@@ -275,6 +277,7 @@
             this.colClaveCliente.Name = "colClaveCliente";
             this.colClaveCliente.Visible = true;
             this.colClaveCliente.VisibleIndex = 0;
+            this.colClaveCliente.Width = 83;
             // 
             // colNombreCliente
             // 
@@ -288,7 +291,7 @@
             this.colCalle.FieldName = "Calle";
             this.colCalle.Name = "colCalle";
             this.colCalle.Visible = true;
-            this.colCalle.VisibleIndex = 2;
+            this.colCalle.VisibleIndex = 1;
             // 
             // colNumExterior
             // 
@@ -296,7 +299,7 @@
             this.colNumExterior.FieldName = "NumExterior";
             this.colNumExterior.Name = "colNumExterior";
             this.colNumExterior.Visible = true;
-            this.colNumExterior.VisibleIndex = 3;
+            this.colNumExterior.VisibleIndex = 2;
             // 
             // colNumInterior
             // 
@@ -304,14 +307,14 @@
             this.colNumInterior.FieldName = "NumInterior";
             this.colNumInterior.Name = "colNumInterior";
             this.colNumInterior.Visible = true;
-            this.colNumInterior.VisibleIndex = 4;
+            this.colNumInterior.VisibleIndex = 3;
             // 
             // colColonia
             // 
             this.colColonia.FieldName = "Colonia";
             this.colColonia.Name = "colColonia";
             this.colColonia.Visible = true;
-            this.colColonia.VisibleIndex = 5;
+            this.colColonia.VisibleIndex = 4;
             // 
             // colCP
             // 
@@ -323,7 +326,7 @@
             this.colFolioFactura.FieldName = "FolioFactura";
             this.colFolioFactura.Name = "colFolioFactura";
             this.colFolioFactura.Visible = true;
-            this.colFolioFactura.VisibleIndex = 6;
+            this.colFolioFactura.VisibleIndex = 5;
             // 
             // colImporte
             // 
@@ -332,7 +335,7 @@
             this.colImporte.FieldName = "Importe";
             this.colImporte.Name = "colImporte";
             this.colImporte.Visible = true;
-            this.colImporte.VisibleIndex = 7;
+            this.colImporte.VisibleIndex = 6;
             // 
             // btnImprimir
             // 
