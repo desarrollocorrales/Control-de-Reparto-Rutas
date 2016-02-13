@@ -47,10 +47,14 @@
             this.colCP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFolioFactura = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colImporte = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colChofer = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.bgwProceso = new System.ComponentModel.BackgroundWorker();
+            this.pbLoading = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridReporte)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reporteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReporte)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -252,7 +256,8 @@
             this.colColonia,
             this.colCP,
             this.colFolioFactura,
-            this.colImporte});
+            this.colImporte,
+            this.colChofer});
             this.gvReporte.GridControl = this.gridReporte;
             this.gvReporte.GroupCount = 3;
             this.gvReporte.Name = "gvReporte";
@@ -277,14 +282,12 @@
             this.colClaveCliente.Name = "colClaveCliente";
             this.colClaveCliente.Visible = true;
             this.colClaveCliente.VisibleIndex = 0;
-            this.colClaveCliente.Width = 83;
+            this.colClaveCliente.Width = 104;
             // 
             // colNombreCliente
             // 
             this.colNombreCliente.FieldName = "NombreCliente";
             this.colNombreCliente.Name = "colNombreCliente";
-            this.colNombreCliente.Visible = true;
-            this.colNombreCliente.VisibleIndex = 1;
             // 
             // colCalle
             // 
@@ -337,6 +340,11 @@
             this.colImporte.Visible = true;
             this.colImporte.VisibleIndex = 6;
             // 
+            // colChofer
+            // 
+            this.colChofer.FieldName = "Chofer";
+            this.colChofer.Name = "colChofer";
+            // 
             // btnImprimir
             // 
             this.btnImprimir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -348,11 +356,29 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
+            // bgwProceso
+            // 
+            this.bgwProceso.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwProceso_DoWork);
+            this.bgwProceso.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwProceso_RunWorkerCompleted);
+            // 
+            // pbLoading
+            // 
+            this.pbLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbLoading.Image = global::Rutas_Control_de_Reparto.Properties.Resources.loading;
+            this.pbLoading.Location = new System.Drawing.Point(266, 92);
+            this.pbLoading.Name = "pbLoading";
+            this.pbLoading.Size = new System.Drawing.Size(453, 342);
+            this.pbLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLoading.TabIndex = 7;
+            this.pbLoading.TabStop = false;
+            this.pbLoading.Visible = false;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(984, 527);
+            this.Controls.Add(this.pbLoading);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.gridReporte);
             this.Controls.Add(this.btnCargarDatos);
@@ -368,6 +394,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridReporte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reporteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReporte)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLoading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,5 +421,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn colClaveCliente;
         private DevExpress.XtraGrid.Columns.GridColumn colFolioFactura;
         private DevExpress.XtraGrid.Columns.GridColumn colImporte;
+        private System.ComponentModel.BackgroundWorker bgwProceso;
+        private System.Windows.Forms.PictureBox pbLoading;
+        private DevExpress.XtraGrid.Columns.GridColumn colChofer;
     }
 }

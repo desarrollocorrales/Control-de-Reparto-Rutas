@@ -31,6 +31,7 @@ namespace Rutas_Control_de_Reparto.GUIs
             txbUsuario.Text = config.FBUser;
             txbContraseña.Text = config.FBPass;
             txbPuerto.Value = config.FBPort;
+            txbSucursal.Text = config.Sucursal;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace Rutas_Control_de_Reparto.GUIs
                 config.FBUser = txbUsuario.Text;
                 config.FBPass = txbContraseña.Text;
                 config.FBPort = Convert.ToInt32(txbPuerto.Value);
-
+                config.Sucursal = txbSucursal.Text;
                 config.Save();
 
                 MessageBox.Show("Los datos se guardaron con éxito", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);

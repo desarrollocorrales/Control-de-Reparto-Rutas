@@ -23,5 +23,8 @@
     <Setting Name="SQLiteCobranza" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Sucursal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Carnicería</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rutas Control de Reparto", "Rutas Control de Reparto.csproj", "{9EEBD0C4-1458-4FCB-8A21-E30228310885}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RutasControlDeRepartoSetup", "..\RutasControlDeRepartoSetup\RutasControlDeRepartoSetup.vdproj", "{5881475F-A264-4378-9F19-0C118264CE4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,8 @@ Global
 		{9EEBD0C4-1458-4FCB-8A21-E30228310885}.Debug|x86.Build.0 = Debug|x86
 		{9EEBD0C4-1458-4FCB-8A21-E30228310885}.Release|x86.ActiveCfg = Release|x86
 		{9EEBD0C4-1458-4FCB-8A21-E30228310885}.Release|x86.Build.0 = Release|x86
+		{5881475F-A264-4378-9F19-0C118264CE4C}.Debug|x86.ActiveCfg = Debug
+		{5881475F-A264-4378-9F19-0C118264CE4C}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

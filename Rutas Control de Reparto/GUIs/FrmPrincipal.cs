@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Rutas_Control_de_Reparto.Modelos;
 using Rutas_Control_de_Reparto.DALs;
+using Rutas_Control_de_Reparto.Reportes;
 
 namespace Rutas_Control_de_Reparto.GUIs
 {
@@ -27,6 +28,8 @@ namespace Rutas_Control_de_Reparto.GUIs
         private void btnCargarDatos_Click(object sender, EventArgs e)
         {
             Cargar();
+            pbLoading.Visible = true;
+            btnCargarDatos.Enabled = false;
         }
         private List<Reporte> ObtenerDatosSQLite(string SQLPath, DateTime fecha)
         {
@@ -49,28 +52,7 @@ namespace Rutas_Control_de_Reparto.GUIs
         {
             try
             {
-                var Configuracion = Properties.Settings.Default;
-
-                List<Reporte> lstReporte = new List<Reporte>();
-                lstReporte.AddRange(ObtenerDatosSQLite(Configuracion.SQLiteCobranza, dtpFecha.Value));
-                lstReporte.AddRange(ObtenerDatosSQLite(Configuracion.SQLiteReparto, dtpFecha.Value));
-
-                Reporte Direccion = new Reporte();
-                foreach (Reporte fila in lstReporte)
-                {
-                    string FolioNormalizado = NormalizarFolio(fila.FolioFactura);
-                    Direccion = ObtenerDireccion(FolioNormalizado);
-
-                    fila.FolioFactura = FolioNormalizado;
-                    fila.Calle = Direccion.Calle;
-                    fila.NumExterior = Direccion.NumExterior;
-                    fila.NumInterior = Direccion.NumInterior;
-                    fila.Colonia = Direccion.Colonia;
-                    fila.CP = Direccion.CP;
-                }
-
-                gridReporte.DataSource = lstReporte.OrderBy(o => o.FolioControl).ToList();
-                gvReporte.BestFitColumns();
+                bgwProceso.RunWorkerAsync();
             }
             catch(Exception ex)
             {
@@ -114,13 +96,42 @@ namespace Rutas_Control_de_Reparto.GUIs
         }
         private void Imprimir()
         {
-            var ruta = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\Ruta" + dtpFecha.Value.ToString("ddMMyyyy") + ".xls";
-            gridReporte.ExportToXls(ruta);
+            xrReporte printReporte = new xrReporte();
+            printReporte.sSucursal = Properties.Settings.Default.Sucursal;
+            printReporte.DataSource = gridReporte.DataSource;
+            printReporte.ShowPreviewDialog();
+        }
 
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = "EXCEL.EXE";
-            startInfo.Arguments = ruta;
-            Process.Start(startInfo);
+        List<Reporte> lstReporte;
+        private void bgwProceso_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var Configuracion = Properties.Settings.Default;
+
+            lstReporte = new List<Reporte>();
+            lstReporte.AddRange(ObtenerDatosSQLite(Configuracion.SQLiteCobranza, dtpFecha.Value));
+            lstReporte.AddRange(ObtenerDatosSQLite(Configuracion.SQLiteReparto, dtpFecha.Value));
+
+            Reporte Direccion = new Reporte();
+            foreach (Reporte fila in lstReporte)
+            {
+                string FolioNormalizado = NormalizarFolio(fila.FolioFactura);
+                Direccion = ObtenerDireccion(FolioNormalizado);
+
+                fila.FolioFactura = FolioNormalizado;
+                fila.Calle = Direccion.Calle;
+                fila.NumExterior = Direccion.NumExterior;
+                fila.NumInterior = Direccion.NumInterior;
+                fila.Colonia = Direccion.Colonia;
+                fila.CP = Direccion.CP;
+            }
+        }
+
+        private void bgwProceso_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            gridReporte.DataSource = lstReporte.OrderBy(o => o.FolioControl).ToList();
+            gvReporte.BestFitColumns();
+            pbLoading.Visible = false;
+            btnCargarDatos.Enabled = true;
         }
     }
 }

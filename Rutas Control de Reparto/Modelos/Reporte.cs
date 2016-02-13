@@ -5,6 +5,7 @@ namespace Rutas_Control_de_Reparto.Modelos
     public class Reporte
     {
         public int FolioControl { set; get; }
+        public string Chofer { set; get; }
         public string FolioFactura { set; get; }
         public decimal Importe { set; get; }
         public string ClaveCliente { set; get; }

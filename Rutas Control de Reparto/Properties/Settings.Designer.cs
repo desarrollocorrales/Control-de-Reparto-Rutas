@@ -106,5 +106,17 @@ namespace Rutas_Control_de_Reparto.Properties {
                 this["SQLiteCobranza"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Carnicería")]
+        public string Sucursal {
+            get {
+                return ((string)(this["Sucursal"]));
+            }
+            set {
+                this["Sucursal"] = value;
+            }
+        }
     }
 }

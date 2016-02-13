@@ -34,13 +34,15 @@ namespace Rutas_Control_de_Reparto.DALs
                 Comando.Connection = Conexion;
                 Comando.CommandText =
                         string.Format(@"SELECT 
-                                            folio_control,
-                                            folio_factura,
-                                            importe_factura,
-                                            clave_cliente,
-                                            nombre_cliente
-                                        FROM
-                                            manejo_impresiones
+                                            mi.folio_control, 
+                                            p.nombre as chofer, 
+                                            mi.folio_factura, 
+                                            mi.importe_factura, 
+                                            mi.clave_cliente, 
+                                            mi.nombre_cliente 
+                                        FROM 
+                                            manejo_impresiones mi 
+                                            INNER JOIN personal p ON p.id_personal = mi.id_chofer
                                         WHERE
                                             fecha_impresion = '{0}'", fecha.ToString("yyyy-MM-dd"));
                 Adapter.SelectCommand = Comando;
@@ -52,6 +54,7 @@ namespace Rutas_Control_de_Reparto.DALs
                 {
                     filaReporte = new Reporte();
                     filaReporte.FolioControl = Convert.ToInt32(fila["folio_control"]);
+                    filaReporte.Chofer = fila["chofer"].ToString();
                     filaReporte.ClaveCliente = fila["clave_cliente"].ToString();
                     filaReporte.NombreCliente = fila["nombre_cliente"].ToString();
                     filaReporte.FolioFactura = fila["folio_factura"].ToString();
