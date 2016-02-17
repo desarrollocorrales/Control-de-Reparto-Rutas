@@ -789,6 +789,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -1671,7 +1684,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Rutas Control De Reparto"
         "ProductCode" = "8:{B0FF871C-7E1B-4231-850D-A74F4E498199}"
-        "PackageCode" = "8:{6B24672F-F58F-497D-B676-645979630B4A}"
+        "PackageCode" = "8:{D8153457-BD29-47BA-8825-DB27A7112DE2}"
         "UpgradeCode" = "8:{B2D24171-B3D5-441C-8DE5-879047837266}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
