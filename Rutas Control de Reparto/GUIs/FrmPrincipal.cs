@@ -15,6 +15,8 @@ namespace Rutas_Control_de_Reparto.GUIs
 {
     public partial class FrmPrincipal : Form
     {
+        private List<Personal> lstPersonal;
+
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -40,6 +42,15 @@ namespace Rutas_Control_de_Reparto.GUIs
 
             return lstReporte;
         }
+        private List<Personal> ObtenerPersonal(string SQLPath)
+        {
+            List<Personal> lstPersonal = new List<Personal>();
+
+            SQLite_DAL sqliteDAL = new SQLite_DAL(SQLPath);
+            lstPersonal = sqliteDAL.ObtenerPersonal();
+
+            return lstPersonal;
+        }
         private Reporte ObtenerDireccion(string folio)
         {
             FB_DAL fbDAL = new FB_DAL();
@@ -52,6 +63,9 @@ namespace Rutas_Control_de_Reparto.GUIs
         {
             try
             {
+                var Configuracion = Properties.Settings.Default;
+                lstPersonal.AddRange(ObtenerPersonal(Configuracion.SQLiteCobranza));
+                lstPersonal.AddRange(ObtenerPersonal(Configuracion.SQLiteReparto));
                 bgwProceso.RunWorkerAsync();
             }
             catch(Exception ex)
@@ -123,6 +137,11 @@ namespace Rutas_Control_de_Reparto.GUIs
                 fila.NumInterior = Direccion.NumInterior;
                 fila.Colonia = Direccion.Colonia;
                 fila.CP = Direccion.CP;
+                var nChofer = lstPersonal.FirstOrDefault(o => o.ID == fila.ID_Chofer);
+                if (nChofer != null)
+                {
+                    fila.Chofer = nChofer.Nombre;
+                }
             }
         }
 
@@ -132,6 +151,11 @@ namespace Rutas_Control_de_Reparto.GUIs
             gvReporte.BestFitColumns();
             pbLoading.Visible = false;
             btnCargarDatos.Enabled = true;
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            lstPersonal = new List<Personal>();
         }
     }
 }

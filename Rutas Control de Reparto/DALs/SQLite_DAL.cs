@@ -35,6 +35,7 @@ namespace Rutas_Control_de_Reparto.DALs
                 Comando.CommandText =
                         string.Format(@"SELECT 
                                             mi.folio_control, 
+                                            mi.id_chofer,
                                             p.nombre as chofer, 
                                             mi.folio_factura, 
                                             mi.importe_factura, 
@@ -42,7 +43,7 @@ namespace Rutas_Control_de_Reparto.DALs
                                             mi.nombre_cliente 
                                         FROM 
                                             manejo_impresiones mi 
-                                            INNER JOIN personal p ON p.id_personal = mi.id_chofer
+                                            LEFT JOIN personal p ON p.id_personal = mi.id_chofer
                                         WHERE
                                             fecha_impresion = '{0}'", fecha.ToString("yyyy-MM-dd"));
                 Adapter.SelectCommand = Comando;
@@ -54,6 +55,7 @@ namespace Rutas_Control_de_Reparto.DALs
                 {
                     filaReporte = new Reporte();
                     filaReporte.FolioControl = Convert.ToInt32(fila["folio_control"]);
+                    filaReporte.ID_Chofer = Convert.ToInt32(fila["id_chofer"]);
                     filaReporte.Chofer = fila["chofer"].ToString();
                     filaReporte.ClaveCliente = fila["clave_cliente"].ToString();
                     filaReporte.NombreCliente = fila["nombre_cliente"].ToString();
@@ -72,6 +74,40 @@ namespace Rutas_Control_de_Reparto.DALs
             }
 
             return lstReporte;
+        }
+        public List<Personal> ObtenerPersonal()
+        {
+            List<Personal> lstPersonal = new List<Personal>();
+            try
+            {
+                Conexion.ConnectionString = @"Data Source=" + rutaSQL + ";Version=3;";
+                Conexion.Open();
+
+                Comando.Connection = Conexion;
+                Comando.CommandText = "SELECT id_personal, nombre FROM personal";
+                Adapter.SelectCommand = Comando;
+                DataTable dtRespuesta = new DataTable();
+                Adapter.Fill(dtRespuesta);
+
+                Personal persona;
+                foreach (DataRow fila in dtRespuesta.Rows)
+                {
+                    persona = new Personal();
+                    persona.ID = Convert.ToInt32(fila["id_personal"]);
+                    persona.Nombre = Convert.ToString(fila["nombre"]);
+                    lstPersonal.Add(persona);
+                }
+
+                Conexion.Close();
+            }
+            catch (Exception ex)
+            {
+                if (Conexion.State != System.Data.ConnectionState.Closed)
+                    Conexion.Close();
+                throw ex;
+            }
+
+            return lstPersonal;
         }
 
         private string ObtenerStringDeConexion()

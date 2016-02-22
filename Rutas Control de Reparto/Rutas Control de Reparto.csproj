@@ -128,6 +128,7 @@
     <Compile Include="GUIs\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\Personal.cs" />
     <Compile Include="Modelos\Reporte.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

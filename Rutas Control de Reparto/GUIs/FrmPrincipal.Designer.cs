@@ -391,6 +391,7 @@
             this.Name = "FrmPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Rutas - Control de Reparto";
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridReporte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reporteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvReporte)).EndInit();
