@@ -1684,7 +1684,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Rutas Control De Reparto"
         "ProductCode" = "8:{B0FF871C-7E1B-4231-850D-A74F4E498199}"
-        "PackageCode" = "8:{D8153457-BD29-47BA-8825-DB27A7112DE2}"
+        "PackageCode" = "8:{2E7D342A-6202-4467-8572-D6E8298EDF74}"
         "UpgradeCode" = "8:{B2D24171-B3D5-441C-8DE5-879047837266}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

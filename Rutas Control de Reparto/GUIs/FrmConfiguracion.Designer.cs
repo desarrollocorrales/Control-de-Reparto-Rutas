@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConfiguracion));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txbSQLiteCobranza = new System.Windows.Forms.TextBox();
             this.btnBuscarCobranza = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txbSucursal = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txbPuerto = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.txbContraseña = new System.Windows.Forms.TextBox();
@@ -49,8 +52,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txbSQLiteReparto = new System.Windows.Forms.TextBox();
             this.ofdSqlite = new System.Windows.Forms.OpenFileDialog();
-            this.txbSucursal = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txbPuerto)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -133,6 +134,26 @@
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Microsip";
+            // 
+            // txbSucursal
+            // 
+            this.txbSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSucursal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txbSucursal.Location = new System.Drawing.Point(232, 59);
+            this.txbSucursal.Name = "txbSucursal";
+            this.txbSucursal.Size = new System.Drawing.Size(431, 26);
+            this.txbSucursal.TabIndex = 28;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(160, 62);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 18);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Sucursal:";
             // 
             // txbPuerto
             // 
@@ -292,26 +313,6 @@
             // 
             this.ofdSqlite.FileName = "*.*";
             // 
-            // txbSucursal
-            // 
-            this.txbSucursal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbSucursal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbSucursal.Location = new System.Drawing.Point(232, 59);
-            this.txbSucursal.Name = "txbSucursal";
-            this.txbSucursal.Size = new System.Drawing.Size(431, 26);
-            this.txbSucursal.TabIndex = 28;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(160, 62);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(66, 18);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "Sucursal:";
-            // 
             // FrmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -322,6 +323,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmConfiguracion";
             this.Text = "Rutas - Configuración";

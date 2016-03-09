@@ -131,12 +131,16 @@ namespace Rutas_Control_de_Reparto.GUIs
                 string FolioNormalizado = NormalizarFolio(fila.FolioFactura);
                 Direccion = ObtenerDireccion(FolioNormalizado);
 
-                fila.FolioFactura = FolioNormalizado;
-                fila.Calle = Direccion.Calle;
-                fila.NumExterior = Direccion.NumExterior;
-                fila.NumInterior = Direccion.NumInterior;
-                fila.Colonia = Direccion.Colonia;
-                fila.CP = Direccion.CP;
+                if (fila.Calle == string.Empty)
+                {
+                    fila.FolioFactura = FolioNormalizado;
+                    fila.Calle = Direccion.Calle;
+                    fila.NumExterior = Direccion.NumExterior;
+                    fila.NumInterior = Direccion.NumInterior;
+                    fila.Colonia = Direccion.Colonia;
+                    fila.CP = Direccion.CP;
+                }
+
                 var nChofer = lstPersonal.FirstOrDefault(o => o.ID == fila.ID_Chofer);
                 if (nChofer != null)
                 {

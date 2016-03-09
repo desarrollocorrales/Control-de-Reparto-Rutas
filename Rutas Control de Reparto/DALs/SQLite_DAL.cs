@@ -40,10 +40,16 @@ namespace Rutas_Control_de_Reparto.DALs
                                             mi.folio_factura, 
                                             mi.importe_factura, 
                                             mi.clave_cliente, 
-                                            mi.nombre_cliente 
+                                            mi.nombre_cliente,
+                                            fd.calle,
+                                            fd.numero, 
+                                            fd.interior, 
+                                            fd.colonia, 
+                                            fd.codigo_postal
                                         FROM 
                                             manejo_impresiones mi 
                                             LEFT JOIN personal p ON p.id_personal = mi.id_chofer
+                                            LEFT JOIN folio_direccion fd ON fd.folio_factura = mi.folio_factura
                                         WHERE
                                             fecha_impresion = '{0}'", fecha.ToString("yyyy-MM-dd"));
                 Adapter.SelectCommand = Comando;
@@ -61,6 +67,11 @@ namespace Rutas_Control_de_Reparto.DALs
                     filaReporte.NombreCliente = fila["nombre_cliente"].ToString();
                     filaReporte.FolioFactura = fila["folio_factura"].ToString();
                     filaReporte.Importe = Convert.ToDecimal(fila["importe_factura"]);
+                    filaReporte.Calle = Convert.ToString(fila["calle"]);
+                    filaReporte.NumExterior = Convert.ToString(fila["numero"]);
+                    filaReporte.NumInterior = Convert.ToString(fila["interior"]);
+                    filaReporte.Colonia = Convert.ToString(fila["colonia"]);
+                    filaReporte.CP = Convert.ToString(fila["codigo_postal"]);
                     lstReporte.Add(filaReporte);
                 }
 
@@ -108,7 +119,7 @@ namespace Rutas_Control_de_Reparto.DALs
             }
 
             return lstPersonal;
-        }
+        }        
 
         private string ObtenerStringDeConexion()
         {
